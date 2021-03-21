@@ -1,5 +1,5 @@
 type Query {
-    estudiantes: String
+    students: [Student!]!
 }
 
 type Student {
