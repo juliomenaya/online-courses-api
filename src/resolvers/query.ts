@@ -51,6 +51,10 @@ const query: IResolvers = {
         },
         courses(): ICourse[] {
             return database.courses
+        },
+        course(__:void, { id }): ICourse {
+            const dbCourse = _.find(database.courses, ['id', id]);
+            return dbCourse as ICourse
         }
     }
 };

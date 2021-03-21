@@ -3,7 +3,10 @@ type Query {
     students: [Student!]!,
     "Student detail by id"
     student(id: ID!): Student!,
-    courses: [Course!]!
+    "Retrieve all available courses"
+    courses: [Course!]!,
+    "Course detail, will return null if an unexistence course id is provided"
+    course(id: ID!): Course
 }
 
 type Student {
