@@ -2,7 +2,8 @@ type Query {
     "Retrieve all Students"
     students: [Student!]!,
     "Student detail by id"
-    student(id: ID!): Student!
+    student(id: ID!): Student!,
+    courses: [Course!]!
 }
 
 type Student {

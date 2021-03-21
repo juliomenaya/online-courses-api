@@ -11,6 +11,27 @@ interface IStudent {
 };
 
 
+interface IReview {
+    id: string,
+    name: string,
+    points: number,
+    comment?: string
+};
+
+interface ICourse {
+    id: string,
+    title: string,
+    description: string,
+    clases: number,
+    time: number,
+    level: string,
+    logo: string,
+    path: string,
+    teacher: string,
+    reviews: IReview[]
+};
+
+
 const query: IResolvers = {
     Query: {
         students(): IStudent[] {
@@ -27,6 +48,9 @@ const query: IResolvers = {
                 } as IStudent
             }
             return dbStudent
+        },
+        courses(): ICourse[] {
+            return database.courses
         }
     }
 };
