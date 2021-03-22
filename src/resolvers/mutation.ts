@@ -24,12 +24,20 @@ const mutation: IResolvers = {
                 return newCourse;
             }
         },
-        // updateCourse(__: void, { course }): ICourse {
+        updateCourse(__: void, { course }): ICourse|undefined {
+            const courseIndexToUpdate = _.findIndex(database.courses, courseItem => courseItem.id === course.id);
+            if (courseIndexToUpdate) {
+                database.courses[courseIndexToUpdate] = { ...course };
+                return database.courses[courseIndexToUpdate];
+            }
 
-        // },
-        // deleteCourse(__: void, { course }): ICourse {
-
-        // }
+        },
+        deleteCourse(__: void, { id }): ICourse|undefined {
+            const removedCourse = _.remove(database.courses, ['id', id]);
+            if (removedCourse) {
+                return removedCourse[0];
+            }
+        }
     }
 };
 
