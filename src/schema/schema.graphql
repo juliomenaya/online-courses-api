@@ -10,7 +10,8 @@ type Query {
 }
 
 type Mutation {
-    newCourse(course: CourseInput!): Course!
+    "Add new course and return his info (id included) if success otherwise null"
+    newCourse(course: CourseInput!): Course
     updateCourse(course: CourseInput!): Course!
     deleteCourse(id: ID!): Course!
 }

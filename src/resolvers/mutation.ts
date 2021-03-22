@@ -6,7 +6,7 @@ import { ICourse } from './models';
 
 const mutation: IResolvers = {
     Mutation: {
-        newCourse(__: void, { course }): ICourse {
+        newCourse(__: void, { course }): ICourse|undefined {
             const newCourse = {
                 id: String(database.courses.length + 1),
                 title: course.title,
@@ -19,8 +19,10 @@ const mutation: IResolvers = {
                 teacher: course.teacher,
                 reviews: []
             };
-            database.courses.push(newCourse);
-            return newCourse;
+            if (database.courses.filter(itemCourse => itemCourse.title.toLowerCase() === newCourse.title.toLowerCase()).length === 0) {
+                database.courses.push(newCourse);
+                return newCourse;
+            }
         },
         // updateCourse(__: void, { course }): ICourse {
 
