@@ -9,6 +9,24 @@ type Query {
     course(id: ID!): Course
 }
 
+type Mutation {
+    newCourse(course: CourseInput!): Course!
+    updateCourse(course: CourseInput!): Course!
+    deleteCourse(id: ID!): Course!
+}
+
+input CourseInput {
+    id: ID,
+    title: String!,
+    description: String!,
+    clases: Int!,
+    time: Float!,
+    logo: String!,
+    level: Level=ALL,
+    path: String!,
+    teacher: String!
+}
+
 type Student {
     id: ID!,
     name: String!,
@@ -24,7 +42,7 @@ type Course {
     clases: Int!,
     time: Float!,
     logo: String!,
-    difficulty: Difficulty!,
+    level: Level!,
     path: String!,
     teacher: String!,
     students: [Student]
@@ -38,10 +56,8 @@ type Review {
     comment: String
 }
 
-enum Difficulty {
-    TODOS,
-    NOVATOS,
-    INTERMEDIO,
-    EXPERTO
+enum Level {
+    ALL,
+    MEDIUM
 }
 
